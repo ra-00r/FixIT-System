@@ -1,70 +1,71 @@
-body {
-    margin: 0;
-    font-family: Arial;
-    background: #f4f6f9;
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#eef2f7;
 }
 
-.sidebar {
-    width: 220px;
-    height: 100vh;
-    background: #1e2a38;
-    color: white;
-    position: fixed;
-    padding: 20px;
+.sidebar{
+    width:230px;
+    height:100vh;
+    background:#1e293b;
+    color:white;
+    position:fixed;
+    padding:20px;
 }
 
-.sidebar a {
-    display: block;
-    padding: 10px;
-    margin: 10px 0;
-    color: white;
-    cursor: pointer;
+.sidebar a{
+    display:block;
+    margin:10px 0;
+    color:#cbd5e1;
+    cursor:pointer;
 }
 
-.main {
-    margin-left: 240px;
-    padding: 20px;
+.main{
+    margin-left:250px;
+    padding:20px;
 }
 
-.cards {
-    display: flex;
-    gap: 10px;
+.cards{
+    display:flex;
+    gap:10px;
+    margin:15px 0;
 }
 
-.card {
-    flex: 1;
-    padding: 20px;
-    color: white;
-    border-radius: 10px;
-    text-align: center;
+.card{
+    flex:1;
+    background:white;
+    padding:15px;
+    border-radius:10px;
 }
 
-.blue {background:#3498db;}
-.green {background:#2ecc71;}
-.red {background:#e74c3c;}
-.orange {background:#f39c12;}
-
-table {
-    width: 100%;
-    margin-top: 20px;
-    background: white;
-    border-collapse: collapse;
+table{
+    width:100%;
+    background:white;
+    margin-top:20px;
+    border-collapse:collapse;
 }
 
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+th,td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
 }
 
-button {
-    margin: 3px;
-    padding: 5px 10px;
-    cursor: pointer;
+.login-box{
+    width:300px;
+    margin:auto;
+    margin-top:150px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
 }
 
-input, select {
-    width: 300px;
-    padding: 10px;
-    margin: 5px 0;
+.center{
+    display:flex;
+    justify-content:center;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
 }

@@ -1,143 +1,51 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>IT Support System</title>
+<title>FixIT Dashboard</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="sidebar">
-    <h2>IT System</h2>
-    <a onclick="showPage('dashboard')">🏠 الرئيسية</a>
-    <a onclick="showPage('add')">➕ إضافة بلاغ</a>
+<h2>⚙️ FixIT</h2>
+<a href="index.html">Dashboard</a>
+<a href="add.html">New Ticket</a>
+<a onclick="logout()">Logout</a>
 </div>
 
 <div class="main">
 
-<!-- Dashboard -->
-<div id="dashboard">
-    <h1>لوحة التحكم</h1>
+<h1>Dashboard</h1>
 
-    <div class="cards">
-        <div class="card blue" id="total">0<br>بلاغات</div>
-        <div class="card orange" id="progress">0<br>قيد المعالجة</div>
-        <div class="card green" id="closed">0<br>تم الحل</div>
-        <div class="card red" id="urgent">0<br>عاجلة</div>
-    </div>
+<input id="search" placeholder="Search..." onkeyup="search()">
 
-    <table>
-        <thead>
-        <tr>
-            <th>الموظف</th>
-            <th>المشكلة</th>
-            <th>النوع</th>
-            <th>الأولوية</th>
-            <th>الحالة</th>
-            <th>الإجراء</th>
-        </tr>
-        </thead>
-        <tbody id="tickets"></tbody>
-    </table>
+<div class="cards">
+<div class="card">Open <span id="open"></span></div>
+<div class="card">Progress <span id="progress"></span></div>
+<div class="card">Closed <span id="closed"></span></div>
 </div>
 
-<!-- Add Ticket -->
-<div id="add" style="display:none;">
-    <h1>إضافة بلاغ</h1>
+<canvas id="chart"></canvas>
 
-    <input id="name" placeholder="اسم الموظف"><br>
-    <input id="issue" placeholder="وصف المشكلة"><br>
-
-    <select id="type">
-        <option>Hardware</option>
-        <option>Network</option>
-        <option>Software</option>
-    </select>
-
-    <select id="priority">
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
-    </select>
-
-    <br><br>
-    <button onclick="addTicket()">إضافة</button>
-</div>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Subject</th>
+<th>Priority</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="table"></tbody>
+</table>
 
 </div>
 
-<script>
-
-let tickets = [];
-
-function showPage(page){
-    document.getElementById("dashboard").style.display="none";
-    document.getElementById("add").style.display="none";
-    document.getElementById(page).style.display="block";
-}
-
-function addTicket(){
-    let ticket = {
-        name: document.getElementById("name").value,
-        issue: document.getElementById("issue").value,
-        type: document.getElementById("type").value,
-        priority: document.getElementById("priority").value,
-        status: "Open"
-    };
-
-    tickets.push(ticket);
-    render();
-    showPage('dashboard');
-}
-
-function changeStatus(index){
-    if(tickets[index].status === "Open"){
-        tickets[index].status = "In Progress";
-    } else if(tickets[index].status === "In Progress"){
-        tickets[index].status = "Closed";
-    }
-    render();
-}
-
-function deleteTicket(index){
-    tickets.splice(index,1);
-    render();
-}
-
-function render(){
-    let table = document.getElementById("tickets");
-    table.innerHTML = "";
-
-    let total=0, progress=0, closed=0, urgent=0;
-
-    tickets.forEach((t,i)=>{
-        total++;
-        if(t.status==="In Progress") progress++;
-        if(t.status==="Closed") closed++;
-        if(t.priority==="High") urgent++;
-
-        table.innerHTML += `
-        <tr>
-        <td>${t.name}</td>
-        <td>${t.issue}</td>
-        <td>${t.type}</td>
-        <td>${t.priority}</td>
-        <td>${t.status}</td>
-        <td>
-            <button onclick="changeStatus(${i})">تحديث</button>
-            <button onclick="deleteTicket(${i})">حذف</button>
-        </td>
-        </tr>`;
-    });
-
-    document.getElementById("total").innerHTML = total + "<br>بلاغات";
-    document.getElementById("progress").innerHTML = progress + "<br>قيد المعالجة";
-    document.getElementById("closed").innerHTML = closed + "<br>تم الحل";
-    document.getElementById("urgent").innerHTML = urgent + "<br>عاجلة";
-}
-
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Ticket</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="main">
+<h1>Add Ticket</h1>
+
+<input id="subject" placeholder="Problem">
+<select id="priority">
+<option>low</option>
+<option>medium</option>
+<option>high</option>
+</select>
+
+<button onclick="add()">Add Ticket</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="app.js"></script>
+</body>
+</html>
